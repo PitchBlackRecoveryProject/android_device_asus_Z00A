@@ -1,7 +1,4 @@
-
-$(call inherit-product, vendor/omni/config/gsm.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
-$(call inherit-product, vendor/omni/config/common.mk)
+$(call inherit-product, vendor/pb/config/common.mk)
 
 # Inherit device configuration
 $(call inherit-product, device/asus/Z00A/device.mk)
