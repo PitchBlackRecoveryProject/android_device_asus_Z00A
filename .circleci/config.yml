@@ -5,7 +5,7 @@ jobs:
       # new all-in-one docker image
       - image: fr3akyphantom/droid-builder:latest
     environment:
-      MANIFEST_BRANCH: 'android-9.0'
+      MANIFEST_BRANCH: 'android-8.1'
       USE_SECRET_BOOTABLE: 'true'
       SECRET_BR: 'redesign3'
       # PBRP_BRANCH: 'android-9.0'
@@ -23,6 +23,7 @@ jobs:
       - run:
           name: AIO Build
           command: |
+            cp vendor/utils/pb_build.sh vendor/pb
             wget -q https://raw.githubusercontent.com/imranpopz/vendor_utils/pb/build.sh
             source build.sh
 workflows:
