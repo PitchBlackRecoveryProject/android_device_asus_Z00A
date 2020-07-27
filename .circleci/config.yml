@@ -5,7 +5,7 @@ jobs:
       # new all-in-one docker image
       - image: fr3akyphantom/droid-builder:latest
     environment:
-      MANIFEST_BRANCH: 'android-8.1'
+      MANIFEST_BRANCH: 'android-9.0'
       USE_SECRET_BOOTABLE: 'true'
       SECRET_BR: 'redesign3'
       # PBRP_BRANCH: 'android-9.0'
