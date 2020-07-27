@@ -26,7 +26,7 @@ jobs:
            
             wget -q https://raw.githubusercontent.com/imranpopz/vendor_utils/pb/build.sh
             source build.sh
-            cp vendor/utils/pb_build.sh vendor/pb
+          
             
 workflows:
   version: 2
