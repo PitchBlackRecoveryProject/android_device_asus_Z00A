@@ -20,12 +20,12 @@
 #include <unistd.h>
 #include <fcntl.h>
 #define _REALLY_INCLUDE_SYS__SYSTEM_PROPERTIES_H_
+#include <android-base/properties.h>
 #include <sys/_system_properties.h>
 
-#include "log.h"
+#include "android-base/logging.h"
 #include "property_service.h"
 #include "util.h"
-#include "vendor_init.h"
 
 #define STRCONV_(x)      #x
 #define STRCONV(x) "%" STRCONV_(x) "s"
@@ -81,6 +81,18 @@ char const *intel_prop[] = {
 "sys.kernel.version"
 };
 
+
+using namespace std;
+
+namespace android
+{
+namespace init
+{
+
+
+
+
+
 static int read_file2(const char *fname, char *data, int max_size)
 {
     int fd, rc;
@@ -90,7 +102,7 @@ static int read_file2(const char *fname, char *data, int max_size)
 
     fd = open(fname, O_RDONLY);
     if (fd < 0) {
-        ERROR("failed to open '%s'\n", fname);
+        LOG(ERROR) << "failed to open '" << fname << "'\n";
         return 0;
     }
 
@@ -114,14 +126,8 @@ static void get_serial()
 
     if(read_file2(path, buf, sizeof(buf))) {
         if (strlen(buf) > 0) {
-            pi = (prop_info*) __system_property_find(SERIAL_PROP);
-            if(pi)
-                ret = __system_property_update(pi, buf,
-                        strlen(buf));
-            else
-                ret = __system_property_add(SERIAL_PROP,
-                        strlen(SERIAL_PROP),
-                        buf, strlen(buf));
+            sscanf(buf, STRCONV(BUF_SIZE), value);
+            property_set(SERIAL_PROP,value);
         }
     }
 }
@@ -131,7 +137,7 @@ static void configure_zram() {
     FILE *f;
 
     if ((f = fopen(MEMINFO_FILE, "r")) == NULL) {
-        ERROR("%s: Failed to open %s\n", __func__, MEMINFO_FILE);
+        LOG(ERROR) << " ZRAM: Failed to open " << MEMINFO_FILE << " '\n";
         return;
     }
 
@@ -139,7 +145,7 @@ static void configure_zram() {
         if (strncmp(buf, MEMINFO_KEY, strlen(MEMINFO_KEY)) == 0) {
             int mem = atoi(&buf[strlen(MEMINFO_KEY)]);
             const char *mode = mem < ZRAM_MEM_THRESHOLD ? "true" : "false";
-            INFO("%s: Found total memory to be %d kb, zram enabled: %s\n", __func__, mem, mode);
+            LOG(INFO) << "Zram: Found total memory to be " << mem << "kb, zram enabled: " << mode << "'\n";
             property_set(ZRAM_PROP, mode);
             break;
         }
@@ -161,7 +167,7 @@ static void intel_props() {
 
 }
 
-void set_feq_values()
+void set_freq_values()
 {
     char buf[BUF_SIZE];
 
@@ -175,7 +181,7 @@ void set_feq_values()
             property_set("ro.sys.perf.device.touchboost", "1833000");
             property_set("ro.sys.perf.device.full", "2333000");
         } else {
-            INFO("%s: Failed to get max cpu speed: %s\n", __func__, buf);
+            LOG(INFO) << "Freq: Failed to get max cpu speed: " << buf << "'\n";
         }
     }
 }
@@ -185,5 +191,8 @@ void vendor_load_properties()
     get_serial();
     configure_zram();
     intel_props();
-    set_feq_values();
+    set_freq_values();
 }
+
+} // namespace init
+} // namespace android
