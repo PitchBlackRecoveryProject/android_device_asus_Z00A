@@ -30,3 +30,7 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += ro.sys.powerctl.no.shutdown=1
 PRODUCT_PACKAGES += \
     intel_prop.cfg \
     ueventd.mofd_v1.rc
+
+# Adbd
+PRODUCT_PACKAGES += \
+    adbd
