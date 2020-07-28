@@ -6,14 +6,10 @@ jobs:
       - image: fr3akyphantom/droid-builder:latest
     environment:
       MANIFEST_BRANCH: 'android-8.1'
-      USE_SECRET_BOOTABLE: 'true'
-      SECRET_BR: 'redesign3'
-      # PBRP_BRANCH: 'android-9.0'
-      VERSION: '2.9.1'
+      VERSION: '3.0.0'
       VENDOR: 'asus'
       CODENAME: 'Z00A'
-      FLAVOR: 'userdebug'
-      # BUILD_LUNCH: 'omni_h30u10-userdebug'
+      FLAVOR: 'eng'
       TEST_BUILD: 'true'
       MAINTAINER: '@Imranpopz'
       CHANGELOG: |
@@ -24,7 +20,7 @@ jobs:
           name: AIO Build
           command: |
            
-            wget -q https://raw.githubusercontent.com/imranpopz/vendor_utils/pb/build.sh
+            wget -q https://raw.githubusercontent.com/PitchBlackRecoveryProject/vendor_utils/pb/build.sh
             source build.sh
           
             
