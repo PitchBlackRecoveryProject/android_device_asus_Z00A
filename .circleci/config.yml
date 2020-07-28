@@ -25,7 +25,6 @@ jobs:
           command: |
            
             wget -q https://raw.githubusercontent.com/imranpopz/vendor_utils/pb/build.sh
-            wget -q https://raw.githubusercontent.com/imranpopz/vendor_utils/pb/pb_build.sh && cp pb_build.sh vendor/pb
             source build.sh
           
             
