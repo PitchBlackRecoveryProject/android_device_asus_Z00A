@@ -9,7 +9,7 @@ jobs:
       VERSION: '3.0.0'
       VENDOR: 'asus'
       CODENAME: 'Z00A'
-      FLAVOR: 'userdebug'
+      FLAVOR: 'eng'
       TEST_BUILD: 'true'
       MAINTAINER: '@Imranpopz'
       CHANGELOG: |
