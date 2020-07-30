@@ -82,7 +82,7 @@ BOARD_CANT_BUILD_RECOVERY_FROM_BOOT_PATCH := true
 TARGET_RECOVERY_PIXEL_FORMAT := "BGRA_8888"
 BOARD_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD
 TARGET_RECOVERY_FSTAB := device/asus/Z00A/recovery/root/etc/twrp.fstab
-TARGET_RECOVERY_DEVICE_MODULES := libinit_mofd librecovery_updater_mofd
+#TARGET_RECOVERY_DEVICE_MODULES := libinit_mofd librecovery_updater_mofd
 
 
 # SELinux
