@@ -1,4 +1,5 @@
 $(call inherit-product, vendor/pb/config/common.mk)
+$(call inherit-product, build/target/product/embedded.mk)
 
 # Inherit device configuration
 $(call inherit-product, device/asus/Z00A/device.mk)
