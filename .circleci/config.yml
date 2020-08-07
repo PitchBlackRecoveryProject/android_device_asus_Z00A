@@ -12,6 +12,7 @@ jobs:
       FLAVOR: 'eng'
       TEST_BUILD: 'true'
       MAINTAINER: '@Imranpopz'
+      EXTRA_CMD: "rm -rf external/busybox && git clone -b oreo-x86 https://scm.osdn.net/gitroot/android-x86/external-busybox.git external/busybox"
       CHANGELOG: |
         TEST BUILD
     working_directory: /home/builder/pitchblack
