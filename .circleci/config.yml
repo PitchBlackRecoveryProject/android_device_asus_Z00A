@@ -12,7 +12,7 @@ jobs:
       FLAVOR: 'eng'
       TEST_BUILD: 'true'
       MAINTAINER: '@Imranpopz'
-      EXTRA_CMD: "rm -rf external/busybox && git clone -b oreo-x86 https://scm.osdn.net/gitroot/android-x86/external-busybox.git external/busybox"
+      EXTRA_CMD: "rm -rf external/busybox && git clone -b oreo-x86 https://scm.osdn.net/gitroot/android-x86/external-busybox.git external/busybox && cd build && wget https://github.com/SKYHAWK-Recovery-Project/shrp_build/commit/bcd4dd5be30764542959de864119c5ef2d66aaf8.patch && git am bcd* && cd .. "
       CHANGELOG: |
         TEST BUILD
     working_directory: /home/builder/pitchblack
